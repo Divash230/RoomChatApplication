@@ -81,4 +81,9 @@ public class RoomController {
          List<Message> paginatedMessages = messages.subList(start, end);
         return ResponseEntity.ok(messages);
     }
+    @GetMapping("/")
+    public String hello() {
+        return "Backend is running!";
+    }
+
 }

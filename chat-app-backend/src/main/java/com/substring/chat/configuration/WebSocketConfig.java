@@ -21,9 +21,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-
+        String frontendUrl = System.getenv("FRONTEND_URL");
+        if (frontendUrl == null) {
+            frontendUrl = "http://localhost:5173"; // fallback for local dev
+        }
         registry.addEndpoint("/chats")
-                .setAllowedOrigins("http://localhost:5173")
+                .setAllowedOrigins(frontendUrl)
                 .withSockJS();
 
 
